@@ -36,6 +36,18 @@ public class Misticita {
     public static final RegistryObject<Item> MISTICITA_ORE_ITEM = ITEMS.register("misticita_ore",
             () -> new BlockItem(MISTICITA_ORE.get(), new Item.Properties()));
 
+    // El Bloque de depslate
+    public static final RegistryObject<Block> DEEPSLATE_MISTICITA_ORE = BLOCKS.register("deepslate_misticita_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)
+                    .strength(4.5f)
+                    .requiresCorrectToolForDrops(),
+                    UniformInt.of(3, 7)));
+
+    // El Ítem del bloque
+    public static final RegistryObject<Item> DEEPSLATE_MISTICITA_ORE_ITEM = ITEMS.register("deepslate_misticita_ore",
+            () -> new BlockItem(DEEPSLATE_MISTICITA_ORE.get(), new Item.Properties()));
+
+
     public static final RegistryObject<Item> MISTICITA_INGOT = ITEMS.register("misticita_ingot",
             () -> new Item(new Item.Properties()));
 

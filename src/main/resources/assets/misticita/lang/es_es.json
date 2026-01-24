@@ -1,3 +1,7 @@
 {
-  "item.misticita.misticita_ingot": "Lingote de Misticita"
+  "item.misticita.misticita_ingot": "Lingote de Misticita",
+  "block.misticita.misticita_ore": "Mena de Misticita",
+  "block.misticita.deepslate_misticita_ore": "Mena de Misticita de Pizarra Profunda",
+  "item.misticita.misticita_ore": "Mena de Misticita",
+  "item.misticita.deepslate_misticita_ore": "Mena de Misticita de Pizarra Profunda"
 }
