@@ -43,7 +43,8 @@ public class Misticita {
         // Obtenemos el bus directamente del contexto que Forge nos da
         IEventBus modEventBus = context.getModEventBus();
 
-        // Registramos los ítems
+        // Registramos los ítems y bloques
+        BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
     }
 
