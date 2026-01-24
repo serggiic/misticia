@@ -1,12 +1,12 @@
 package net.sch.misticita;
 
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -59,6 +59,22 @@ public class Misticita {
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
     }
+    // Espada
+    public static final RegistryObject<Item> MISTICITA_SWORD = ITEMS.register("misticita_sword",
+            () -> new SwordItem(Tiers.NETHERITE, 8, -2.4f, new Item.Properties()));
 
+    // Pico
+    public static final RegistryObject<Item> MISTICITA_PICKAXE = ITEMS.register("misticita_pickaxe",
+            () -> new PickaxeItem(Tiers.NETHERITE, 1, -2.8f, new Item.Properties()) {
+                @Override
+                public float getDestroySpeed(ItemStack stack, BlockState state) {
+                    // Si el bloque es picable con este pico, devolvemos 11.0f (Netherite es 9.0f)
+                    return super.getDestroySpeed(stack, state) > 1.0f ? 11.0f : 1.0f;
+                }
+            });
+
+    // Hacha
+    public static final RegistryObject<Item> MISTICITA_AXE = ITEMS.register("misticita_axe",
+            () -> new AxeItem(Tiers.NETHERITE, 10, -3.0f, new Item.Properties()));
 
 }
