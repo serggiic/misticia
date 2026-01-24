@@ -1,6 +1,12 @@
 package net.sch.misticita;
 
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -15,6 +21,21 @@ public class Misticita {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
+    // Registro para Bloques
+    public static final DeferredRegister<Block> BLOCKS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+
+    // El Bloque de Mineral
+    public static final RegistryObject<Block> MISTICITA_ORE = BLOCKS.register("misticita_ore",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)
+                    .strength(3.0f) // Dureza (el hierro es 3)
+                    .requiresCorrectToolForDrops(), // Necesitas pico para que caiga el ítem
+                    UniformInt.of(3, 7))); // Suelta entre 3 y 7 de experiencia
+
+    // Registramos el bloque como un Ítem para que aparezca en el inventario
+    public static final RegistryObject<Item> MISTICITA_ORE_ITEM = ITEMS.register("misticita_ore",
+            () -> new BlockItem(MISTICITA_ORE.get(), new Item.Properties()));
+
     public static final RegistryObject<Item> MISTICITA_INGOT = ITEMS.register("misticita_ingot",
             () -> new Item(new Item.Properties()));
 
@@ -25,4 +46,6 @@ public class Misticita {
         // Registramos los ítems
         ITEMS.register(modEventBus);
     }
+
+
 }
