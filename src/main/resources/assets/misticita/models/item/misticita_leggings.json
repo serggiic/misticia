@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "misticia:item/misticita_leggings"
+    "layer0": "misticita:item/misticita_leggings"
   }
 }
