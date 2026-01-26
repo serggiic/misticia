@@ -4,6 +4,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -15,7 +16,12 @@ public enum ArmorMaterialMisticita implements ArmorMaterial {
             SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0f, 0.2f,
             () -> Ingredient.of(Misticita.MISTICITA_INGOT.get()));
 
-    private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
+    private static final java.util.Map<ArmorItem.Type, Integer> HEALTH_PER_SLOT = java.util.Map.of(
+            ArmorItem.Type.HELMET, 13,
+            ArmorItem.Type.CHESTPLATE, 15,
+            ArmorItem.Type.LEGGINGS, 16,
+            ArmorItem.Type.BOOTS, 11
+    );
     private final String name;
     private final int durabilityMultiplier;
     private final int[] slotProtections;
@@ -37,15 +43,18 @@ public enum ArmorMaterialMisticita implements ArmorMaterial {
         this.knockbackResistance = knockbackResistance;
         this.repairIngredient = new LazyLoadedValue<>(repairIngredient);
     }
-
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
-        return HEALTH_PER_SLOT[slot.getIndex()] * this.durabilityMultiplier;
+    public SoundEvent getEquipSound() {
+        return this.sound;
+    }
+    @Override
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return HEALTH_PER_SLOT.get(type) * this.durabilityMultiplier;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
-        return this.slotProtections[slot.getIndex()];
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.slotProtections[type.ordinal()];
     }
 
     @Override
@@ -54,19 +63,22 @@ public enum ArmorMaterialMisticita implements ArmorMaterial {
     }
 
     @Override
-    public SoundEvent getEquipSound() {
-        return this.sound;
-    }
-
-    @Override
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 
     @Override
-    public String getName() { 
-        return this.name; 
+    public String getName() {
+        return this.name;
     }
 
-    @
+    @Override
+    public float getToughness() {
+        return this.toughness;
+    }
+
+    @Override
+    public float getKnockbackResistance() {
+        return this.knockbackResistance;
+    }
 }
