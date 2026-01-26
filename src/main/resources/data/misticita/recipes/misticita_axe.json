@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "MM",
+        "MS",
+        " S"
+    ],
+    "key": {
+        "M": { "item": "misticita:misticita_ingot" },
+        "S": { "item": "minecraft:stick" }
+        },
+    
+    "result": {
+        "item": "misticita:misticita_axe"
+    }
+}

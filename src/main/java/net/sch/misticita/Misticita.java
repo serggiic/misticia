@@ -45,11 +45,35 @@ public class Misticita {
 
     // El Ítem del bloque
     public static final RegistryObject<Item> DEEPSLATE_MISTICITA_ORE_ITEM = ITEMS.register("deepslate_misticita_ore",
-            () -> new BlockItem(DEEPSLATE_MISTICITA_ORE.get(), new Item.Properties()));
+            () -> new BlockItem(DEEPSLATE_MISTICITA_ORE.get(), 
+                new Item.Properties().tab(MISTICITA_TAB)));
 
+    //Bloque de misticita
+    public static final RegistryObject<Block> MISTICITA_BLOCK = BLOCKS.register("misticita_block",
+        () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)
+                .strength(50.0f, 1200.0f)
+                .requiresCorrectToolForDrops();
+                .sound(SoundType.NETHERITE_BLOCK)));
 
+    //Ítem del bloque de misticita
+    public static final RegistryObject<Item> MISTICITA_BLOCK_ITEM = ITEMS.register("misticita_block",
+        () -> new BlockItem(MISTICITA_BLOCK.get(),
+                new Item.Properties().tab(MISTICITA_TAB)));
+
+    //Ladrillos de Misticita
+    public static final RegistryObject<Block> MISTICITA_BRICKS = BLOCKS.register("misticita_bricks",
+        () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK
+                .strength(45.0f, 1200.0f)
+                .requiresCorrectToolForDrops())));
+
+    //Ítem de los ladrillos de Misticita
+    public static final RegistryObject<Item> MISTICITA_BRICKS_ITEM = ITEMS.register("misticita_bricks",
+        () -> new BlockItem(MISTICITA_BRICKS.get(),
+                new Item.Properties().tab(MISTICITA_TAB)));
+
+    
     public static final RegistryObject<Item> MISTICITA_INGOT = ITEMS.register("misticita_ingot",
-            () -> new Item(new Item.Properties()));
+            () -> new Item(new Item.Properties().tab(MISTICITA_TAB)));
 
     public Misticita(FMLJavaModLoadingContext context) {
         // Obtenemos el bus directamente del contexto que Forge nos da
