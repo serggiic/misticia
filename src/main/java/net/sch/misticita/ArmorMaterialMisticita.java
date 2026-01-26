@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.function.Supplier;
 
 public enum ArmorMaterialMisticita implements ArmorMaterial {
-    MISTICITA("misticita", 45, new int[]{4, 7, 9, 4}, 20,
+    MISTICITA("misticita:misticita", 45, new int[]{4, 7, 9, 4}, 20,
             SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0f, 0.2f,
             () -> Ingredient.of(Misticita.MISTICITA_INGOT.get()));
 

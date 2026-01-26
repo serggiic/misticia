@@ -76,6 +76,17 @@ public class Misticita {
     public static final RegistryObject<Item> MISTICITA_INGOT = ITEMS.register("misticita_ingot",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> MISTICITA_HELMET = ITEMS.register("misticita_helmet",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_CHESTPLATE = ITEMS.register("misticita_chestplate",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_LEGGINGS = ITEMS.register("misticita_leggings",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_BOOTS = ITEMS.register("misticita_boots",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.BOOTS, new Item.Properties()));
     public Misticita(FMLJavaModLoadingContext context) {
         // Obtenemos el bus directamente del contexto que Forge nos da
         IEventBus modEventBus = context.getModEventBus();
