@@ -1,6 +1,9 @@
 package net.sch.misticita;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -14,6 +17,8 @@ import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -24,6 +29,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.sch.misticita.CreativeTab;
+
+import java.util.concurrent.CompletableFuture;
 
 
 @Mod(Misticita.MODID)
@@ -171,6 +178,7 @@ public class Misticita {
 
     public Misticita(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
+        modEventBus.addListener(this::gatherData);
 
         BLOCKS.register(modEventBus);  // IMPORTANTE: Esto primero
         ITEMS.register(modEventBus);
@@ -178,5 +186,17 @@ public class Misticita {
 
         // Esto DEBE ir DESPUÉS de BLOCKS.register()
         //ModEvents.register(modEventBus);  // Porque ModEvents depende de los bloques
+    }
+
+
+    private void gatherData(GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        // Añadimos esta línea para obtener el 'ayudante' de archivos
+        ExistingFileHelper efh = event.getExistingFileHelper();
+
+        // Ahora pasamos los 4 argumentos que el constructor necesita
+        //generator.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider, efh));
     }
 }

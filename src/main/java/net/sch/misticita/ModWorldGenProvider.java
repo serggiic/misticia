@@ -50,7 +50,7 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 
         context.register(MISTICITA_ORE_KEY, new ConfiguredFeature<>(
                 Feature.ORE,
-                new OreConfiguration(targetStates, 9)
+                new OreConfiguration(targetStates, 64)
         ));
     }
 
@@ -60,10 +60,13 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
         Holder<ConfiguredFeature<?, ?>> misticitaOreHolder = configuredFeatures.getOrThrow(MISTICITA_ORE_KEY);
 
         List<PlacementModifier> placement = List.of(
-                CountPlacement.of(7),
+                CountPlacement.of(150), // Cantidad exagerada para encontrarlo ya
                 InSquarePlacement.spread(),
-                HeightRangePlacement.uniform(VerticalAnchor.absolute(-64), VerticalAnchor.absolute(30)),
-                BiomeFilter.biome()
+                HeightRangePlacement.uniform(
+                        VerticalAnchor.absolute(-64),
+                        VerticalAnchor.absolute(320)
+                )
+
         );
 
         context.register(MISTICITA_ORE_PLACED_KEY, new PlacedFeature(misticitaOreHolder, placement));
