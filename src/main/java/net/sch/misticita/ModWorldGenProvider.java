@@ -29,11 +29,11 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> MISTICITA_ORE_KEY =
             ResourceKey.create(Registries.CONFIGURED_FEATURE,
-                    new ResourceLocation(Misticita.MODID, "misticita_ore"));
+                    ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "misticita_ore"));
 
     public static final ResourceKey<PlacedFeature> MISTICITA_ORE_PLACED_KEY =
             ResourceKey.create(Registries.PLACED_FEATURE,
-                    new ResourceLocation(Misticita.MODID, "misticita_ore_placed"));
+                    ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "misticita_ore"));
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
         super(output, registries, ModBootstrapProviders.BUILDER, Set.of(Misticita.MODID));
@@ -43,9 +43,9 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
     public static void bootstrapConfigured(BootstapContext<ConfiguredFeature<?, ?>> context) {
         List<OreConfiguration.TargetBlockState> targetStates = List.of(
                 OreConfiguration.target(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES),
-                        ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Misticita.MODID, "misticita_ore")).defaultBlockState()),
+                        ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "misticita_ore")).defaultBlockState()),
                 OreConfiguration.target(new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES),
-                        ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Misticita.MODID, "deepslate_misticita_ore")).defaultBlockState())
+                        ForgeRegistries.BLOCKS.getValue(ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "deepslate_misticita_ore")).defaultBlockState())
         );
 
         context.register(MISTICITA_ORE_KEY, new ConfiguredFeature<>(
