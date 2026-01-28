@@ -3,6 +3,7 @@ package net.sch.misticita;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext; // <-- 1.20.1: CON "t"
@@ -27,6 +28,12 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
 
+    public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            // Aquí le decimos: "Usa el método bootstrapConfigured de ESTA clase"
+            .add(Registries.CONFIGURED_FEATURE, ModWorldGenProvider::bootstrapConfigured)
+            // Aquí le decimos: "Usa el método bootstrapPlaced de ESTA clase"
+            .add(Registries.PLACED_FEATURE, ModWorldGenProvider::bootstrapPlaced);
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> MISTICITA_ORE_KEY =
             ResourceKey.create(Registries.CONFIGURED_FEATURE,
                     ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "misticita_ore"));
@@ -36,7 +43,9 @@ public class ModWorldGenProvider extends DatapackBuiltinEntriesProvider {
                     ResourceLocation.fromNamespaceAndPath(Misticita.MODID, "misticita_ore"));
 
     public ModWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
-        super(output, registries, ModBootstrapProviders.BUILDER, Set.of(Misticita.MODID));
+        super(output, registries, BUILDER, Set.of(Misticita.MODID));
+
+
     }
 
 
