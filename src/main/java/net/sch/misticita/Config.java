@@ -44,7 +44,7 @@ public class Config {
             return false;
         }
 
-        // Método actualizado sin deprecación
+
         ResourceLocation location;
         try {
             location = ResourceLocation.parse(itemName);
