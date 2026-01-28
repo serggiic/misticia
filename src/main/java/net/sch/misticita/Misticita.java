@@ -20,19 +20,16 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.sch.misticita.CreativeTab;
 
 
 @Mod(Misticita.MODID)
 public class Misticita {
     public static final String MODID = "misticita";
 
-    //Pestaña creativa personalizada
-    public static final CreativeModeTab MISTICITA_TAB = new CreativeModeTab("misticita_tab") {
-        @Override
-        public ItemStack makeIcon() {
-            return new ItemStack(MISTICITA_INGOT.get());
-        }
-    };
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
@@ -51,7 +48,7 @@ public class Misticita {
     // Registramos el bloque como un Ítem para que aparezca en el inventario
     public static final RegistryObject<Item> MISTICITA_ORE_ITEM = ITEMS.register("misticita_ore",
             () -> new BlockItem(MISTICITA_ORE.get(),
-                    new Item.Properties().tab(MISTICITA_TAB)));
+                    new Item.Properties()));
 
     // El Bloque de Deepslate
     public static final RegistryObject<Block> DEEPSLATE_MISTICITA_ORE = BLOCKS.register("deepslate_misticita_ore",
@@ -62,8 +59,8 @@ public class Misticita {
 
     // El Ítem del bloque
     public static final RegistryObject<Item> DEEPSLATE_MISTICITA_ORE_ITEM = ITEMS.register("deepslate_misticita_ore",
-            () -> new BlockItem(DEEPSLATE_MISTICITA_ORE.get(), 
-                new Item.Properties().tab(MISTICITA_TAB)));
+            () -> new BlockItem(DEEPSLATE_MISTICITA_ORE.get(),
+                    new Item.Properties()));
 
     //Bloque de misticita
     public static final RegistryObject<Block> MISTICITA_BLOCK = BLOCKS.register("misticita_block",
@@ -74,8 +71,8 @@ public class Misticita {
 
     //Ítem del bloque de misticita
     public static final RegistryObject<Item> MISTICITA_BLOCK_ITEM = ITEMS.register("misticita_block",
-        () -> new BlockItem(MISTICITA_BLOCK.get(),
-                new Item.Properties().tab(MISTICITA_TAB).fireResistant()));
+            () -> new BlockItem(MISTICITA_BLOCK.get(),
+                    new Item.Properties().fireResistant()));
 
     //Ladrillos de Misticita
     public static final RegistryObject<Block> MISTICITA_BRICKS = BLOCKS.register("misticita_bricks",
@@ -86,38 +83,17 @@ public class Misticita {
     //Ítem de los ladrillos de Misticita
     public static final RegistryObject<Item> MISTICITA_BRICKS_ITEM = ITEMS.register("misticita_bricks",
         () -> new BlockItem(MISTICITA_BRICKS.get(),
-                new Item.Properties().tab(MISTICITA_TAB).fireResistant()));
+                new Item.Properties().fireResistant()));
 
     // ========== ÍTEMS ==========
 
     public static final RegistryObject<Item> MISTICITA_INGOT = ITEMS.register("misticita_ingot",
-            () -> new Item(new Item.Properties().tab(MISTICITA_TAB).fireResistant()));
-
-    // ========== ARMADURA ==========
-    public static final RegistryObject<Item> MISTICITA_HELMET = ITEMS.register("misticita_helmet",
-            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.HELMET, new Item.Properties()));
-
-    public static final RegistryObject<Item> MISTICITA_CHESTPLATE = ITEMS.register("misticita_chestplate",
-            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
-
-    public static final RegistryObject<Item> MISTICITA_LEGGINGS = ITEMS.register("misticita_leggings",
-            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
-
-    public static final RegistryObject<Item> MISTICITA_BOOTS = ITEMS.register("misticita_boots",
-            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.BOOTS, new Item.Properties()));
-    public Misticita(FMLJavaModLoadingContext context) {
-        // Obtenemos el bus directamente del contexto que Forge nos da
-        IEventBus modEventBus = context.getModEventBus();
-
-        // Registramos los ítems y bloques
-        BLOCKS.register(modEventBus);
-        ITEMS.register(modEventBus);
-    }
+            () -> new Item(new Item.Properties().fireResistant()));
 
     // ========== HERRAMIENTAS ==========
     // Espada
     public static final RegistryObject<Item> MISTICITA_SWORD = ITEMS.register("misticita_sword",
-            () -> new SwordItem(Tiers.NETHERITE, 8, -2.4f, new Item.Properties().tab(MISTICITA_TAB).fireResistant()) {
+            () -> new SwordItem(Tiers.NETHERITE, 8, -2.4f, new Item.Properties().fireResistant()) {
             @Override
                 public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
                 target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 1));
@@ -151,7 +127,7 @@ public class Misticita {
     // Hacha
     public static final RegistryObject<Item> MISTICITA_AXE = ITEMS.register("misticita_axe",
             () -> new AxeItem(Tiers.NETHERITE, 10, -3.0f,
-                    new Item.Properties().tab(MISTICITA_TAB).fireResistant()) {
+                    new Item.Properties().fireResistant()) {
             @Override
                 public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 
@@ -169,7 +145,7 @@ public class Misticita {
     //Pala
     public static final RegistryObject<Item> MISTICITA_SHOVEL = ITEMS.register("misticita_shovel",
             () -> new ShovelItem(Tiers.NETHERITE, 1.5f, -3.0f,
-                new Item.Properties().tab(MISTICITA_TAB).fireResistant()) {
+                new Item.Properties().fireResistant()) {
 
                 @Override
                 public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity miner) {
@@ -179,4 +155,27 @@ public class Misticita {
                 return super.mineBlock(stack, level, state, pos, miner);
         }
     });
+
+    // ========== ARMADURA ==========
+    public static final RegistryObject<Item> MISTICITA_HELMET = ITEMS.register("misticita_helmet",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_CHESTPLATE = ITEMS.register("misticita_chestplate",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_LEGGINGS = ITEMS.register("misticita_leggings",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<Item> MISTICITA_BOOTS = ITEMS.register("misticita_boots",
+            () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public Misticita() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        BLOCKS.register(modEventBus);  // IMPORTANTE: Esto primero
+        ITEMS.register(modEventBus);
+        CreativeTab.register(modEventBus);
+
+        // Esto DEBE ir DESPUÉS de BLOCKS.register()
+        //ModEvents.register(modEventBus);  // Porque ModEvents depende de los bloques
+    }
 }
