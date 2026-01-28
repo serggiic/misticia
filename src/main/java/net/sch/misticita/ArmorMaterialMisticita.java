@@ -76,8 +76,7 @@ public enum ArmorMaterialMisticita implements ArmorMaterial {
 
     @Override
     public String getName() {
-        return "misticita" + this.name;
-    }
+        return "misticita:" + this.name; }
 
     @Override
     public float getToughness() {

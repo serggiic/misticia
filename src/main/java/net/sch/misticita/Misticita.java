@@ -168,6 +168,7 @@ public class Misticita {
 
     public static final RegistryObject<Item> MISTICITA_BOOTS = ITEMS.register("misticita_boots",
             () -> new ArmorItem(ArmorMaterialMisticita.MISTICITA, ArmorItem.Type.BOOTS, new Item.Properties()));
+
     public Misticita(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
