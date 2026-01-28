@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M M",
+    "M M"
+  ],
+  "key": {
+    "M": { "item": "misticita:misticita_ingot" }
+  },
+  "result": {
+    "item": "misticita:misticita_boots"
+  }
+}

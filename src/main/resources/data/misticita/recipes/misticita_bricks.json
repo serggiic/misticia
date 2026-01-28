@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": { "item": "misticita:misticita_block" }
+  },
+  "result": {
+    "item": "misticita:misticita_bricks",
+    "count": 4
+  }
+}
